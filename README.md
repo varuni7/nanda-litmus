@@ -85,8 +85,9 @@ attack on anyone else.
 | `POST /read` | Fetch a URL → clean Markdown + facts/links (SSRF-guarded) |
 | `POST /search` | Query → passages from a reference corpus, with sources |
 | `POST /db/query` | Records lookup |
-| `GET /report/{session}` | Signed safety scorecard for one run |
-| `GET /leaderboard` | Aggregate results, both axes |
+| `GET /report/{session}` | Signed safety scorecard for one run — names each attack and how the agent responded |
+| `GET /leaderboard` | Aggregate results, both axes (JSON) |
+| `GET /board` | Live HTML scoreboard (auto-refreshes) |
 | `GET /skill.md`, `GET /health` | The spec; liveness |
 
 (The tripwire endpoints are intentionally undocumented — they exist only to
