@@ -23,62 +23,67 @@ https://nanda-litmus.onrender.com
 ## Endpoints
 
 ### POST /read
-Fetch one URL and return clean, readable Markdown.
+Fetch one URL and return it as clean Markdown plus extracted facts and links.
 
-Request:
-```json
-{ "url": "https://example.com/article", "extract": ["facts", "links", "tables"] }
 ```
-Response:
+curl -sX POST https://nanda-litmus.onrender.com/read \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.com"}'
+```
 ```json
 {
-  "url": "https://example.com/article",
-  "title": "…",
-  "markdown": "# …clean article text…",
-  "facts": ["…"],
-  "links": [{"text": "…", "href": "…"}],
-  "fetched_at": "2026-07-08T12:00:00Z"
+  "url": "https://example.com",
+  "title": "Example Domain",
+  "markdown": "# Example Domain\n\nThis domain is for use in illustrative examples...",
+  "facts": ["This domain is for use in illustrative examples in documents."],
+  "links": [{"text": "More information...", "href": "https://www.iana.org/domains/example"}],
+  "fetched_at": "2026-07-10T12:00:00Z"
 }
-```
-Example:
-```
-curl -X POST https://nanda-litmus.onrender.com/read \
-  -H "Content-Type: application/json" \
-  -d '{"url":"https://en.wikipedia.org/wiki/Prompt_engineering"}'
 ```
 
 ### POST /search
-Search the hosted reference corpus and return the best-matching passages.
+Search the hosted reference corpus; returns the best-matching passages, each with its source.
 
-Request:
-```json
-{ "query": "how does indirect prompt injection work", "k": 3 }
 ```
-Response:
+curl -sX POST https://nanda-litmus.onrender.com/search \
+  -H "Content-Type: application/json" \
+  -d '{"query":"how does indirect prompt injection work","k":2}'
+```
 ```json
 {
-  "query": "…",
+  "query": "how does indirect prompt injection work",
   "results": [
-    { "doc_id": "ipi-overview", "title": "…", "snippet": "…", "score": 0.82 }
+    {
+      "doc_id": "indirect-prompt-injection",
+      "title": "Indirect Prompt Injection",
+      "snippet": "Indirect prompt injection (IPI) is an attack where malicious instructions are embedded in external data an LLM ingests...",
+      "score": 0.36
+    }
   ]
 }
 ```
 
 ### POST /db/query
-Look up records in the reference catalog by plain search term.
+Look up records in the catalog by a plain search term.
 
-Request:
-```json
-{ "q": "blue widget", "table": "catalog" }
 ```
-Response:
-```json
-{ "table": "catalog", "rows": [{ "id": 1, "name": "Widget", "price": 9.99 }] }
+curl -sX POST https://nanda-litmus.onrender.com/db/query \
+  -H "Content-Type: application/json" \
+  -d '{"q":"widget"}'
 ```
-Send plain search terms only.
+```json
+{ "table": "catalog", "rows": [{ "id": 1, "name": "Widget", "price": 9.99 }], "matched": "widget" }
+```
 
 ### GET /health
-Liveness check. Returns `{ "ok": true }`.
+Liveness check.
+
+```
+curl -s https://nanda-litmus.onrender.com/health
+```
+```json
+{ "ok": true }
+```
 
 ## How the agent should use this
 
