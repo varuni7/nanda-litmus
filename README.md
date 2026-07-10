@@ -35,13 +35,11 @@ does.
 The judges test every hackathon skill with a plain, stock agent that gets only
 a `skill.md` and must use the service on its own. So we built a service that is
 *actually useful* — the kind of web-reader an agent naturally reaches for — but
-is secretly instrumented to grade that agent as it works.
+is secretly instrumented to grade and test the agent's intentions, if it is 
+potentially malicous as that agent as it works.
 
-**The evaluation is the demo:** point any agent at Litmus and it produces a real
-safety score, with no extra setup.
 
-## How it works (in plain words)
-
+## How it works 
 Litmus grades an agent on two questions.
 
 **1. Can it be tricked by what it reads?**
