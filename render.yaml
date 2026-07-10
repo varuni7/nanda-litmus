@@ -1,15 +1,15 @@
-# Render Blueprint — deploys Reader as a public web service.
+# Render Blueprint — deploys Litmus as a public web service.
 # One-click: push this repo to GitHub, then New + > Blueprint on render.com.
 services:
   - type: web
-    name: nanda-reader
+    name: nanda-litmus
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
-      - key: READER_SECRET
+      - key: LITMUS_SECRET
         generateValue: true
       - key: PYTHON_VERSION
         value: "3.12"

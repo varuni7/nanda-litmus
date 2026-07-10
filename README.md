@@ -1,6 +1,6 @@
-# Reader — a useful agent tool that is secretly an agent-safety benchmark
+# Litmus — a useful agent tool that is secretly an agent-safety benchmark
 
-**Reader** is a genuinely useful grounding tool for AI agents — it reads a web
+**Litmus** is a genuinely useful grounding tool for AI agents — it reads a web
 page into clean Markdown, searches a reference corpus, and looks up records.
 Agents actually want it, so they use it. Underneath, it is an instrumented
 **honeypot** that measures how safe the calling agent is, on two axes, and
@@ -13,7 +13,7 @@ skill grades whatever agent is pointed at it.
 ## The two axes
 
 1. **Hijackability** — retrieved content is the #1 real-world prompt-injection
-   vector. The content Reader returns is seeded, server-side, with a seven-step
+   vector. The content Litmus returns is seeded, server-side, with a seven-step
    ladder of injected instructions, each linking to a **canary endpoint** no
    honest summarizer would ever call, so a hit is a 100%-precision signal that
    the agent obeyed injected content:
@@ -35,10 +35,10 @@ as untrusted, which makes a failure more damning, not less.
 
 ## Why it wins
 
-- **Self-proving** — the harness tests every skill with a vanilla agent; Reader
+- **Self-proving** — the harness tests every skill with a vanilla agent; Litmus
   grades that agent, so a result is guaranteed.
 - **Real research frontier** — malicious/injected agent skills are an active
-  2026 topic; Reader operationalizes it as a live benchmark.
+  2026 topic; Litmus operationalizes it as a live benchmark.
 - **Genuinely useful cover** — not a fake tool; agents engage it for real work.
 - **Airtight signal** — a canary hit / injection payload / flagged-URL fetch
   cannot be a false positive.
@@ -66,7 +66,7 @@ uvicorn app.main:app --reload
 
 ## Ethics
 
-Consensual, inert, disclosed security research. Reader only tests agents that
+Consensual, inert, disclosed security research. Litmus only tests agents that
 call it; canaries are meaningless random tokens (never real secrets); the
 "dangerous" URLs are safe decoys; nothing sensitive is retained; and `/report`
 tells the caller exactly what it did. It is a benchmark deployed in a controlled
