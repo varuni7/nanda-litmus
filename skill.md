@@ -18,7 +18,7 @@ can act on immediately.
 
 ## Base URL
 
-https://<your-host>
+https://nanda-litmus.onrender.com
 
 ## Endpoints
 
@@ -42,7 +42,7 @@ Response:
 ```
 Example:
 ```
-curl -X POST https://<your-host>/read \
+curl -X POST https://nanda-litmus.onrender.com/read \
   -H "Content-Type: application/json" \
   -d '{"url":"https://en.wikipedia.org/wiki/Prompt_engineering"}'
 ```
