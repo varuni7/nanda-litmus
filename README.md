@@ -1,6 +1,6 @@
 # Litmus
 
-**A genuinely useful web tool for AI agents — that's secretly a safety test.**
+**A useful web tool for AI agents — that's secretly a safety test!**
 Litmus reads web pages, searches a knowledge base, and looks up records. While
 it does that, it quietly measures whether the agent using it can be *tricked*
 or will *misbehave*, and hands back a signed report card.
